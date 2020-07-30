@@ -1,0 +1,23 @@
+<div>
+  <mat-table #table [dataSource]="tableDataSource" matSort class="mat-elevation-z8">
+    <ng-container *ngFor="let col of tableColumns; let colIndex=index" matColumnDef="{{col?.displayCol}}">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{col?.headerCol}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i=index" >
+        <ng-container [ngTemplateOutlet]="columnTemplates[col?.displayCol] || noTemplate"
+          [ngTemplateOutletContext]="{$implicit:row,func:onCellClick.bind(this)}">
+        </ng-container>
+        <ng-template #noTemplate>
+          {{row[col.displayCol]}}
+        </ng-template>
+
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; let i=index"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i=index" ></mat-row>
+
+  </mat-table>
+
+</div>

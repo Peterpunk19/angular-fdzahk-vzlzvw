@@ -1,0 +1,7 @@
+<custom-mat-table [tableDataSource]="dataSource" [tableColumns]="columnList">
+	<custom-mat-column columnName="weight">
+		<ng-template let-item>
+			<b>{{item.weight}}</b>
+		</ng-template>
+	</custom-mat-column>
+</custom-mat-table>
